@@ -1,0 +1,9 @@
+<div class="container">
+    <h2>Create an acocunt</h2>
+    <form method='post' action='{% url "sign up" %}'>
+    {% csrf_token %}
+    {{form.as_p}}
+    <button class="btn waves-effect" type="submit">Register</button>    
+
+    </form>
+</div>

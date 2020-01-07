@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <title>Budget App</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+
+    <body>
+        <p>login.html</p>
+        <div class=section>
+            <div class="section">
+                <h2 class="center">Sign in</h2>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="container">
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button class="btn waves-effect">Login</button>
+                </form>
+                <br>
+                Dont have an account?<a href='{% url "sign up" %}'>Create Here</a>
+            </div>
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    </body>
+</html>

@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <title>Budget App</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container">
+            <form method="POST" class="form" action='app/'>
+                {% csrf_token %}
+                <h3>Update Details</h3>
+                <!-- <div class="form-group row">
+                    <label for='expense_name'>Expense name</label>
+                    <input placeholder="Expense name" name="expense_name" id='expense_name' type='text' value="{{ expense_item.expense_name }}">
+                </div>
+                <div>
+                    <label for='cost'>Amount</label>
+                    <input placeholder="Amount" name="cost" id='cost' type='text' value="{{ expense_item.cost }}">
+                    
+                </div>
+                <div>
+                    <label for='expense_date'>Expense Date</label>
+                    <input placeholder="Date of Expense" name="expense_date" id='expense_date' type='text' value="{{ expense_item.date_added }}">
+                </div> -->
+                {{form}}
+                <button type="submit" class="btn btn-success">Update</button>
+            </form>
+        </div>
+    </body>
+</html>

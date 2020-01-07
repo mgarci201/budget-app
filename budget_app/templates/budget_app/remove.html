@@ -1,0 +1,21 @@
+remove.html
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <title>Budget App</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <div class="container">
+            <p>Are you sure you want to delete "{{expense_item}}"?</p>
+
+            <form action="{% url 'delete_item' expense_item.id %}" method="POST">
+                {% csrf_token %}
+                <a href="{% url 'index' %}">Cancel</a>
+                <input type="submit" name="Confirm">
+            </form>
+        </div>
+    </body>
+</html>

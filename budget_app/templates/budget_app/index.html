@@ -1,0 +1,86 @@
+{% load static %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<body>
+
+<nav class="navbar navbar-dark bg-dark">
+    <div class="navbar-nav-scroll">
+        <a href='{% url "index" %}' class="brand-logo center text-uppercase navbar-brand">Hi, {{ user }}</a>
+        <ul class="right">
+            <li><a href='{% url "logout" %}' class="btn btn-danger">Logout</a></li>
+        </ul>
+    </div>
+</nav>    
+<div class="container">
+    <div class="section">
+        <div class="row">
+            <form class="col-12" action='{% url "add item" %}' method="POST">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="container center">
+                        <div>
+                            <h3 class="center">Total Budget: <span style="color: green;">{{budget}}</span></h3>
+                            <h3 class="center">Total Spent: <span>{{expenses}}</span></h3>
+                        </div>
+                        <br>
+                        <br>
+                        <div>
+                            <input placeholder="Expense name" name="expense_name" id='expense_name' type='text' class='validate'>
+                            <label for='expense_name'>Expense name</label>
+                        </div>
+                        <div>
+                            <input placeholder="Amount" name="cost" id='cost' type='text' class='validate'>
+                            <label for='cost'>Amount</label>
+                        </div>
+                        <div>
+                            <input placeholder="Date of Expense" name="expense_date" id='expense_date' type='text' class='datepicker'>
+                            <label for='expense_date'>Expense Date</label>
+                        </div>
+                        <button class="btn btn-info" type="submit" name="action">Add Expense
+                            <i class="material-icons right"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <br>
+    <table>
+        <thead>
+            <tr>
+                <th>Expense ID</th>
+                <th>Item</th>
+                <th>Amount</th>
+                <th>Date</th>
+                <th>&nbsp;</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for expense_item in expense_items %}
+            <tr>
+                <td>{{ expense_item.id }}</td>
+                <td>{{ expense_item.expense_name }}</td>
+                <td>{{ expense_item.cost }}</td>
+                <td>{{ expense_item.date_added }}</td>
+                <td>
+                    <div class="form-group row">
+                        <a href="{% url 'edit item' expense_item.id %}" class="btn btn-sm btn-info">Edit</a>&nbsp;&nbsp;
+                        <a href="{% url 'delete_item' expense_item.id %}" class="btn btn-sm btn-danger">Del</a>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.datepicker');
+            var instances = M.Datepicker.init(elems, {format:'yyyy-mm-dd'});
+        });
+    </script>
+</body>
